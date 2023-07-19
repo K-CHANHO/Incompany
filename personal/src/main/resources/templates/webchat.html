@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form id="subForm" action="/webchat/exit" method="post">
+	    <input id="userid" name='userid' type="hidden" th:value="${userid}">
+	</form>
+
+	<div>
+	    <span>&lt; 채팅방 &gt;</span>
+	    <div class="msgArea"></div>
+	</div>
+		    <input id="content" type="text" placeholder="보낼 메세지를 입력하세요." onkeypress="submitMsg()">
+		    <button id="sendBtn" type="button" value="전송" onclick="sendMsg()">전송</button>
+		    <button id="exitBtn" type="button" value="나가기" onclick="WSclose()">나가기</button>
+	</body>
+	
+	<script>
+        let socket = new WebSocket("ws://" + location.host + "/webchat");
+        let userid = document.getElementById("userid").value;
+
+        socket.onopen = function (e) {
+            socket.send(userid + "님이 입장하셨습니다.")
+        };
+
+        function sendMsg() {
+            let content = document.getElementById("content").value;
+            document.getElementById("content").value = '';
+            console.log(userid + " : " + content);
+            socket.send(userid + " : " + content);
+        }
+
+        socket.onmessage = function (e) {
+            let msgArea = document.querySelector('.msgArea');
+            let newMsg = document.createElement('div');
+            console.log("data : " + e);
+            newMsg.innerText=e.data;
+            msgArea.append(newMsg);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        
+        function WSclose() {
+        	socket.send(userid + "님이 퇴장하셨습니다.")
+        	document.getElementById("subForm").submit();
+            //window.location.href = 'http://' + location.host + '/webchat/exit';
+        }
+        
+        socket.onerror = function (e){
+            console.log(e);
+        }
+        
+        // 엔터키로 전송가능
+        function submitMsg(e) {
+        	if(window.event.keyCode == 13){
+	        	sendMsg();
+	        	document.getElementById("content").value = '';
+	        	document.getElementById("content").focus();
+	        	
+        	}
+        }
+        
+        // 브라우저 종료시 퇴장메세지
+        window.onbeforeunload = function(e){
+    		WSclose();
+		}
+       
+        
+	</script>
+</body>
+</html>
