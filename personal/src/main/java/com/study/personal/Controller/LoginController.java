@@ -2,7 +2,9 @@ package com.study.personal.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.study.personal.DTO.memberDTO;
@@ -31,11 +33,17 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String login(memberDTO memberDTO) {
+	public String login(memberDTO memberDTO, Model model) {
 		
 		Member member = memberService.login(memberDTO);
+		if(member != null) {
+			model.addAttribute("userid", memberDTO.getUserid());
+			return "main";
+		} else {
+			return "index";
+		}
 		
-		return "main";
+		
 	}
 
 }

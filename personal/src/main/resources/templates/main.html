@@ -5,6 +5,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-메인페이지
+	<form action="/webchat/" method="post">
+	<input type="hidden" name='userid' th:value="${userid}"></input>
+	<button type="submit">채팅방</button>
+	</form> 
 </body>
 </html>
