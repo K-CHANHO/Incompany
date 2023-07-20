@@ -8,6 +8,11 @@
 	<form action="/webchat/" method="post">
 	<input type="hidden" name='userid' th:value="${userid}"></input>
 	<button type="submit">채팅방</button>
+	</form>
+	
+	<form action="/board/" method="post">
+	<input type="hidden" name='userid' th:value="${userid}"></input>
+	<button type="submit">게시판</button>
 	</form> 
 </body>
 </html>
