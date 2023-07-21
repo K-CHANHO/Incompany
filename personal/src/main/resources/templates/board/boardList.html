@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/board/write" method="post">
+		<input type="hidden" name='userid' th:value="${userid}"></input>
+		<button type="submit">글쓰기</button>
+	</form>
+		
+	<table style="border-collapse: collapse;">
+		<thead>
+			<tr>
+				<th>글번호</th>
+				<th>내용</th>
+				<th>작성자</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="board : ${boardList}" style="border-bottom: 1px solid black;">
+				<th>[[${board.board_no}]]</th>
+				<th>[[${board.content}]]</th>
+				<th>[[${board.userid}]]</th>
+			</tr>
+		</tbody>
+		
+	</table>
+</body>
+</html>

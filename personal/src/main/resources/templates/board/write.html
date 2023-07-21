@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/board/save" method="post">
+		작성자 : <input type="text" name='userid' th:value="${userid}" readonly></input>
+		<br>
+		내용 : <textarea id="content" name="content"></textarea>
+		<br>
+		<button type="submit">저장</button>
+	</form>
+</body>
+</html>
