@@ -9,6 +9,11 @@
 		<input type="hidden" name='userid' th:value="${userid}"></input>
 		<button type="submit">글쓰기</button>
 	</form>
+	
+	<form action="/board/toMain" method="post">
+		<input type="hidden" name='userid' th:value="${userid}"></input>
+		<button type="submit">뒤로가기</button>
+	</form>
 		
 	<table style="border-collapse: collapse;">
 		<thead>

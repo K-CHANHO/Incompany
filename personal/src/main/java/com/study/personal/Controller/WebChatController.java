@@ -42,8 +42,8 @@ public class WebChatController extends Socket {
 	@OnOpen
 	public void open(Session newUser) throws IOException {
 		System.out.println("connected");
-		System.out.println("채팅방 인원 : " + session.size());
 		session.add(newUser);
+		System.out.println("채팅방 인원 : " + session.size());
 	}
 	
 	@OnMessage

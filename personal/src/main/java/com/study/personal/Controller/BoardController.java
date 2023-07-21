@@ -55,4 +55,10 @@ public class BoardController {
 		redirectAttributes.addAttribute("userid", boardDTO.getUserid());
 		return "redirect:/board/";
 	}
+	
+	@PostMapping("/toMain")
+	public String backToMain(@ModelAttribute("userid") String userid) {
+		
+		return "main";
+	}
 }
