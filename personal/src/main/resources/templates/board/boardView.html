@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/board/save" method="post">
+		<input type="hidden" name="board_id" th:value="${board.board_id}"></input>
+		
+		작성자 : <input type="text" name='userid' th:value="${board.userid}" style="background-color: lightgray;"></input>
+		<br>
+		내용 : <textarea id="content" name="content" readonly>[[${board.content}]]</textarea>
+		<br>
+		<button type="submit">수정</button>
+		<button type="submit">삭제</button>
+	</form>
+</body>
+</html>

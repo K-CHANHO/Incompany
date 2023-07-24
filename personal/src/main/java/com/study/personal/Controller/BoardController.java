@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.study.personal.DTO.boardDTO;
@@ -24,17 +25,8 @@ public class BoardController {
 	@Autowired
 	private boardService boardService;
 	
-	@GetMapping()
+	@RequestMapping()
 	public String boardList(@ModelAttribute("userid") String userid, Model model){
-		
-		List<boardDTO> boardList = boardService.boardList();
-		model.addAttribute("boardList", boardList);
-		
-		return "/board/boardList";
-	}
-	
-	@PostMapping
-	public String boardList2(@ModelAttribute("userid") String userid, Model model){
 		
 		List<boardDTO> boardList = boardService.boardList();
 		model.addAttribute("boardList", boardList);
@@ -60,5 +52,16 @@ public class BoardController {
 	public String backToMain(@ModelAttribute("userid") String userid) {
 		
 		return "main";
+	}
+	
+	@GetMapping("/view")
+	public String viewBoard(@RequestParam("id") String board_id, Model model) {
+		
+		log.info("컨트롤러 : " + board_id);
+		boardDTO boardDTO = boardService.boardView(board_id);
+		
+		model.addAttribute("board", boardDTO);
+		
+		return "/board/boardView";
 	}
 }

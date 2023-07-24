@@ -1,10 +1,14 @@
 package com.study.personal.Entity;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,11 +25,12 @@ import lombok.ToString;
 public class Board {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long board_no;
 	
-	@Column(unique = true)
+	@Column(nullable = false)
 	private String board_id;
+	
 	
 	@Column(nullable = false)
 	private String userid;

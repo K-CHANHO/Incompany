@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -24,13 +24,21 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="board : ${boardList}" style="border-bottom: 1px solid black;">
-				<th>[[${board.board_no}]]</th>
-				<th>[[${board.content}]]</th>
-				<th>[[${board.userid}]]</th>
-			</tr>
+			<th:block th:each="board : ${boardList}">
+				<tr style="border-bottom: 1px solid black;" th:onclick="viewBoard([[${board.board_id}]])">
+					<th>[[${board.board_no}]]</th>
+					<th>[[${board.content}]]</th>
+					<th>[[${board.userid}]]</th>
+				</tr>
+			</th:block>
 		</tbody>
 		
 	</table>
+	
+	<script>
+		function viewBoard(board_id){
+			location.href = encodeURI("/board/view?id=" + board_id);
+		}
+	</script>
 </body>
 </html>

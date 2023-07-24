@@ -12,6 +12,8 @@ public interface boardService {
 	
 	List<boardDTO> boardList();
 
+	boardDTO boardView(String board_id);
+
 	default Board boardDTOToBoard(boardDTO boardDTO) {
 			
 		Board board = Board.builder()
@@ -27,12 +29,14 @@ public interface boardService {
 		
 		boardDTO DTO = boardDTO.builder()
 				.board_no(board.getBoard_no())
+				.board_id(board.getBoard_id())
 				.userid(board.getUserid())
 				.content(board.getContent())
 				.build();
 		
 		return DTO;
 	}
+
 	
 	
 }

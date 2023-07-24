@@ -10,6 +10,9 @@ import com.study.personal.DTO.boardDTO;
 import com.study.personal.Entity.Board;
 import com.study.personal.Repository.boardRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class boardServiceImpl implements boardService{
 
@@ -38,6 +41,17 @@ public class boardServiceImpl implements boardService{
 		
 		return boardList;
 	}
+
+	@Override
+	public boardDTO boardView(String board_id) {
+		log.error(board_id);
+		Board board = boardRepository.findByUUID(board_id);
+		log.error(board.toString());
+		boardDTO boardDTO = boardToBoardDTO(board);
+		
+		return boardDTO;
+	}
+	
 	
 	
 
