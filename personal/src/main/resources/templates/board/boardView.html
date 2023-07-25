@@ -5,15 +5,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/board/save" method="post">
+	<form name="form" method="post">
+		<input type="hidden" name="board_no" th:value="${board.board_no}"></input>
 		<input type="hidden" name="board_id" th:value="${board.board_id}"></input>
 		
-		작성자 : <input type="text" name='userid' th:value="${board.userid}" style="background-color: lightgray;"></input>
+		작성자 : <input type="text" name='userid' th:value="${board.userid}" style="background-color: lightgray;" readonly></input>
 		<br>
 		내용 : <textarea id="content" name="content" readonly>[[${board.content}]]</textarea>
 		<br>
-		<button type="submit">수정</button>
-		<button type="submit">삭제</button>
+		<button type="submit" onclick="boardEdit()">수정</button>
+		<button type="submit" onclick="boardDel()">삭제</button>
+		<button type="submit" onclick="boardList()">목록</button>
 	</form>
+	
+	<script>
+		function boardEdit(){
+			document.form.action = "/board/viewTOedit";
+		}
+		
+		function boardDel(){
+			document.form.action = "/board/delete";
+		}
+		
+		function boardList(){
+			document.form.action = "/board/";
+		}
+	</script>
 </body>
 </html>

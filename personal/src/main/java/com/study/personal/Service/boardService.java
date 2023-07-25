@@ -14,9 +14,14 @@ public interface boardService {
 
 	boardDTO boardView(String board_id);
 
+	boardDTO boardEdit(boardDTO boardDTO);
+
+	void boardDelete(boardDTO boardDTO);
+	
 	default Board boardDTOToBoard(boardDTO boardDTO) {
 			
 		Board board = Board.builder()
+				.board_no(boardDTO.getBoard_no())
 				.board_id(UUID.randomUUID().toString())
 				.userid(boardDTO.getUserid())
 				.content(boardDTO.getContent())
@@ -36,7 +41,5 @@ public interface boardService {
 		
 		return DTO;
 	}
-
-	
 	
 }

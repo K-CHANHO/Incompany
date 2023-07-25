@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="form" method="post">
+		<input type="hidden" name="board_id" th:value="${board.board_id}"></input>
+		
+		작성자 : <input type="text" name='userid' th:value="${board.userid}" style="background-color: lightgray;"></input>
+		<br>
+		내용 : <textarea id="content" name="content">[[${board.content}]]</textarea>
+		<br>
+		<button type="submit" onclick="boardEdit()">수정</button>
+		<button type="submit" onclick="boardCancel()">취소</button>
+	</form>
+	
+	<script>
+		function boardEdit(){
+			document.form.action = "/board/editTOview";
+		}
+		
+		function boardCancel(){
+			document.form.method = "get";
+			document.form.action = "/board/view";
+		}
+	</script>
+</body>
+</html>

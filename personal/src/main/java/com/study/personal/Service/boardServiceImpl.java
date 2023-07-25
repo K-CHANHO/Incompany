@@ -44,13 +44,32 @@ public class boardServiceImpl implements boardService{
 
 	@Override
 	public boardDTO boardView(String board_id) {
-		log.error(board_id);
 		Board board = boardRepository.findByUUID(board_id);
-		log.error(board.toString());
 		boardDTO boardDTO = boardToBoardDTO(board);
 		
 		return boardDTO;
 	}
+
+	@Override
+	public boardDTO boardEdit(boardDTO boardDTO) {
+		
+		boardRepository.boardEdit(boardDTO.getBoard_id(), boardDTO.getContent());
+		
+		boardDTO = boardToBoardDTO(boardRepository.findByUUID(boardDTO.getBoard_id()));
+		
+		return boardDTO;
+	}
+
+	@Override
+	public void boardDelete(boardDTO boardDTO) {
+		
+		Board board = boardDTOToBoard(boardDTO);
+		log.info("서비스 : " + board.toString());
+
+		boardRepository.delete(board);
+	}
+	
+	
 	
 	
 	
