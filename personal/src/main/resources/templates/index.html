@@ -17,6 +17,23 @@
 		<button type="button" onClick="location.href='member_join'">회원가입</button>
 		<button type="submit">로그인</button>
 		</div>
+		<a id="kakao-login-btn"></a>
 	</form>
+	
+	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script type="text/javascript" src="/hiddenKeys.js"></script>
+	<script type="text/javascript">
+		 // @details 카카오톡 Developer API 사이트에서 발급받은 JavaScript Key
+        Kakao.init(js_api_key);
+
+        // @breif 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+              container : "#kakao-login-btn",
+              success : function( authObj ) {
+				 location.href = '/kakaoLogin'; 
+			  }
+              });
+		
+	</script>
 </body>
 </html>
