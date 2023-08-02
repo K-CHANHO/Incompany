@@ -5,14 +5,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/webchat/" method="post">
+	<form name="form" action="/webchat/" method="post">
 	<input type="hidden" name='userid' th:value="${userid}"></input>
-	<button type="submit">채팅방</button>
+	<button type="submit" onclick="brokerBtn('chat')">채팅방</button>
+	<button type="submit" onclick="brokerBtn('board')">게시판</button>
+	<button type="submit" onclick="brokerBtn('weather')">날씨</button>
 	</form>
 	
 	<form action="/board/" method="post">
 	<input type="hidden" name='userid' th:value="${userid}"></input>
 	<button type="submit">게시판</button>
 	</form> 
+
+	<script>
+		function brokerBtn(menu){
+			if('chat' == menu){
+				document.form.method = "post";
+				document.form.action = "/webchat/";
+			} else if('board' == menu){
+				document.form.method = "post";
+				document.form.action = "/board/";
+			} else if('weather' == menu){
+				document.form.method = "get";
+				document.form.action = "/weather/";
+			}
+		}
+	</script>
+
 </body>
 </html>
