@@ -5,10 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	[[${totalMap.sky}]]
-		<th:block th:each="sky:${totalMap.sky}">
-			<th:block th:each="value:${sky}"></th:block>
-				<
+		<th:block th:each="sky:${resultString}">
+			<div th:text="${sky}"></div>
 		</th:block>		
 </body>
 </html>
